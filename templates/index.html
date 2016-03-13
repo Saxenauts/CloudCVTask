@@ -1,0 +1,109 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Task 1 For CloudCV
+{ % endblock %}
+{%block navbar %}
+    <nav class="navbar navbar-inverse" role = "navigation">
+        <div class = "container">
+            <a class = "navbar-brand">VQA</a>
+        </div>
+    </nav>
+{% endblock %}
+
+
+
+{% block content %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+function submitImage(src){
+    $.ajax({
+                type : 'POST',
+                url  : '/image',
+                data : {'src': src}
+            });
+            
+        }
+</script>
+<script>
+function submitQuestion(){
+    var ques = document.getElementById('ques').value;
+    $.ajax({
+                type : 'POST',
+                url  : '/ques',
+                data : {'ques': ques}
+           });
+       }
+          
+</script>
+
+<script>
+function chosenImage(src){
+    var empty = document.getElementById("empty");
+    var div = document.createElement("div");
+    div.setAttribute("id", "newImage");
+    div.setAttribute("class", "container");
+    
+    var img = document.createElement("img");
+    img.setAttribute("src", src);
+    img.setAttribute("width", "304");
+    img.setAttribute("height", "228");
+    img.setAttribute("class", "img-rounded");
+    div.appendChild(img);
+    document.body.insertBefore(div, empty);
+    document.getElementById("newImage").scrollIntoView();
+    }    
+</script>
+
+{% block image %}
+
+<h1 align = "center">VQA demo</h1>
+<h2 align = "center">Click on an image and type the question below</h2>
+<div class = "container">
+
+    <div class = "row">
+    <div class = "col-sm-4">
+    <img src = "./static/room.jpg" onclick = "submitImage(this.src); chosenImage(this.src);" class = "img-rounded" style="width:304px;height:228px;">
+    </div><div class = "col-sm-4">
+    <img src = "./static/plane.jpg" onclick = "submitImage(this.src); chosenImage(this.src);" class = "img-rounded" style="width:304px;height:228px;">
+    </div><div class = "col-sm-4">
+    <img src = "./static/zebra.jpg" onclick = "submitImage(this.src); chosenImage(this.src);" class = "img-rounded" style="width:304px;height:228px;">
+    </div>
+    </div><div class="col-xs-12" style="height:50px;"></div>
+    
+    <div class = "row">
+    <div class = "col-sm-4">
+    <img src = "./static/football.jpg" onclick = "submitImage(this.src); chosenImage(this.src);" class = "img-rounded" style="width:304px;height:228px;">
+    </div><div class = "col-sm-4">
+    <img src = "./static/bus.jpg" onclick = "submitImage(this.src); chosenImage(this.src);" class = "img-rounded" style="width:304px;height:228px;">
+    </div><div class = "col-sm-4">
+    <img src = "./static/tennis.jpg" onclick = "submitImage(this.src); chosenImage(this.src);" class = "img-rounded" style="width:304px;height:228px;">
+   </div>
+   </div>
+</div> 
+
+
+{% endblock %}
+ 
+ <div class="col-xs-12" style="height:30px;"></div>
+ <div class = "container">
+ 
+ <h3>Ask a question relevant to the image</h3>
+ 
+</div>
+<div class = "container">
+    <div class = "row">
+    <div class = "col-sm-8">
+    <input id = "ques" type = "text" class = "form-control" value = "Type your question here">
+    </div><div class = "col-sm-4">
+    <input id = "btnsubmit" class = "btn btn-primary" type = "button" value = "Ask" onclick = submitQuestion() ></input>
+    </div>
+    </div>
+</div>
+
+<div class="col-xs-12" style="height:50px;"></div>
+<div class="col-xs-12" style="height:30px;" id = "empty"></div>
+
+{% endblock %}
+{% endblock %}
+    
