@@ -4,8 +4,8 @@ import operator
 import progressbar 
 from sklearn import preprocessing
 from sklearn.externals import joblib
+from utils import grouper, selectFrequentAnswers
 
-"""
 def getModalAnswer(answers):
 	candidates = {}
 	for i in xrange(10):
@@ -17,6 +17,7 @@ def getModalAnswer(answers):
 	return max(candidates.iteritems(), key=operator.itemgetter(1))[0]
 
 
+"""
 def convert():
     print("Loading English()")
     
@@ -55,6 +56,7 @@ def convert():
         img_id.write((str(q['image_id']) + '\n').encode('utf8'))
         #TODO: Understand the meaning of this and rewrite the function
         ans_txt.write(getModalAnswer(ans[i]['answers']).encode('utf8'))
+        ans_txt.write('\n'.encode('utf8'))
         
     print 'Translation done'
 
@@ -62,13 +64,19 @@ convert()
 """
 
 def save_pickle():
+    
     answers = open('../data/ans_txt.txt', 'r').read().decode('utf8').splitlines()
-    #print(len(answers))
-    #print (answers)
+    print(len(answers))
+    questions = open("../data/ques_txt.txt", 'r').read().decode('utf8').splitlines()
+    images = open("../data/img_id_txt.txt", 'r').read().decode('utf8').splitlines()
+    maxAnswers = 1000
+    questions, answers, images = selectFrequentAnswers(questions,answers,images, maxAnswers)
+    
     encoder = preprocessing.LabelEncoder()
     encoder.fit(answers)
-    #print ("Number of classes: " + str(len(list(encoder.classes_))))
+    print ("Number of classes: " + str(len(list(encoder.classes_))))
     joblib.dump(encoder, '../data/encoder.pkl')
     return "DONE"
     
 save_pickle()
+

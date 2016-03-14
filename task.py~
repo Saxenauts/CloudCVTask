@@ -34,7 +34,7 @@ def initial():
 @app.route('/image', methods = ['POST', 'GET'])
 def image():
     print (request.form['src'])
-    url = request.form['src']
+    url = str(request.form['src'])
     #image_url = "http://127.0.0.1:5000/static/room.jpg"
     
     #global i
