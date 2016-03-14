@@ -9,7 +9,7 @@ sys.path.insert(0, staticpath)
 #import predict as pdict
 import urllib
 
-print ("Laalu")
+
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -23,7 +23,7 @@ i = 0
 
 @app.route('/', methods = ['GET'])
 def initial():
-    print ("Hoola")
+    print ("Hola")
     global nlp
     global encoder
     global model
