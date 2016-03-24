@@ -9,9 +9,12 @@ sys.path.insert(0, staticpath)
 import predict as pdict
 
 
+<<<<<<< HEAD
 
 
-print ("Inititate")
+
+=======
+>>>>>>> 14c27f51c9b12931aeaa75ded00999f5e5370730
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -26,7 +29,11 @@ img_matrix = ""
 
 @app.route('/', methods = ['GET'])
 def initial():
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> 14c27f51c9b12931aeaa75ded00999f5e5370730
     global nlp
     global encoder
     global model
