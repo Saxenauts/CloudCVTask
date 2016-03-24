@@ -27,9 +27,10 @@ function submitImage(src){
 <script>
 function getAnswer(){
     $.ajax({
-            type: 'GET',
+            dataType: 'JSON',
             url: '/answer',
-            dataType: 'json',
+            type: 'GET',
+            
             success: function(data){
                 $('#dis_ans').text(data.ans);
                 }
@@ -44,8 +45,14 @@ function submitQuestion(){
     $.ajax({
                 type : 'POST',
                 url  : '/ques',
-                data : {'ques': ques}
-                success: getAnswer()
+                data : {'ques': ques},
+                success: function(data){
+                    $.ajax({
+                        type: 'GET',
+                        url: '/ques',
+                        success: getAnswer()
+                        });
+                    }
            });
        }
           
@@ -148,4 +155,5 @@ function chosenImage(src){
 
 
 {% endblock %}
+
 

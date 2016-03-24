@@ -46,16 +46,14 @@ def VGG_16(weights_path=None):
     model.add(Dense(4096, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(4096, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(1000, activation='softmax'))
+    #model.add(Dropout(0.5))
+    #model.add(Dense(1000, activation='softmax'))
 
     if weights_path:
         model.load_weights(weights_path)
 
     #Remove the last two layers to get the 4096D activations
-    model.layers.pop()
-    model.layers.pop()
-
+    
     return model
     
 if __name__ == "__main__":

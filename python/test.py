@@ -4,7 +4,7 @@ import os
 
 
 
-img_path = "../static/zebra.jpg"
+img_path = "../static/football.jpg"
 print(os.path.abspath(img_path))
 
 ques = "What is the this animal?"

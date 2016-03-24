@@ -20,47 +20,50 @@ def get_ques_tensor(questions, nlp, timesteps):
     return questions_tensor
 
 #TODO: Find a way to return a list  of top five elements from the list.
+
 def load():
     print ("Loading English")
-    nlp = English()
+    nlp = spacy.load('en', vectors = 'en_glove_cc_300_1m_vectors')
     
     
     print ("Loading encoder")
-    encoder = joblib.load(os.path.abspath('./models/encoder.pkl'))
+    encoder = joblib.load(os.path.abspath('../models/encoder.pkl'))
     print (len(list(encoder.classes_)))
     
     print ("Loading model")
-    model = model_from_json(open(os.path.abspath('./models/lstm_1_num_hidden_units_lstm_512_num_hidden_units_mlp_1024_num_hidden_layers_mlp_3.json')).read())
+    model = model_from_json(open(os.path.abspath('../models/lstm_1_num_hidden_units_lstm_512_num_hidden_units_mlp_1024_num_hidden_layers_mlp_3.json')).read())
     print ("Loading Weights")
-    model.load_weights(os.path.abspath('./models/lstm_1_num_hidden_units_lstm_512_num_hidden_units_mlp_1024_num_hidden_layers_mlp_3_epoch_070.hdf5'))
+    model.load_weights(os.path.abspath('../models/lstm_1_num_hidden_units_lstm_512_num_hidden_units_mlp_1024_num_hidden_layers_mlp_3_epoch_070.hdf5'))
     print ("Compiling Model")
     model.compile(loss = 'categorical_crossentropy', optimizer = 'rmsprop')
     print ('Loaded')
-    return nlp, encoder, model
+    return nlp, encoder, model    
 
-def predict(nlp, encoder, model, path, ques):
-    print ("Image Path: ", path)
-    print ("Question is : ", ques)     
+def image_matrix(nlp, encoder, model, path):
+    print("Loading Image")     
     im = cv2.resize(cv2.imread(path), (224, 224))
     im = im.transpose((2,0,1))
     im = np.expand_dims(im, axis=0)
-    
+    print("Generating Image vectors")
     img_model = kvgg.VGG_16('../models/vgg16_weights.h5')
     sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
     img_model.compile(optimizer=sgd, loss='categorical_crossentropy')
     img_matrix = img_model.predict(im)
-    print("Image Matrix Loaded")
-    ##Question
-    question = ques
-    timesteps = len(nlp(question))
-    ques_tensor = get_ques_tensor([question], nlp, timesteps)
-    concat_matrix = [ques_tensor, img_matrix]
+    return img_matrix
 
-    Y_predicted = model.predict_classes(concat_matrix, verbose = 0)
+
+##Below code heavily derived from Avi Singh's repo
+def predict(nlp, encoder, model, question, img_matrix):
+    
+        timesteps = len(nlp(question))
+        print("Getting question tensor")
+        ques_tensor = get_ques_tensor([question], nlp, timesteps)
+        concat_matrix = [ques_tensor, img_matrix]
+        print ("Predicting")
+        Y_predicted = model.predict_classes(concat_matrix, verbose = 0)
         #print (Y_predicted)
         #print( encoder.inverse_transform(Y_predicted))
     return encoder.inverse_transform(Y_predicted)
-    
     
 
 
