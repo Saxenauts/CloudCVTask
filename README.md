@@ -1,10 +1,12 @@
 #Visual Question Answering (VQA) 
 
-Simple Code to demo VQA system using **Convolutional Neural Network(VGG -16)** to process images, and a **Recurrent Neural Networks(Glove embeddings)** to process the question and a **Three layered Feedforward neural Network** to combine their results. The [VQA dataset](http://visualqa.org/) is then trained on this network. 
+Here is a simple code to demo VQA system using **Convolutional Neural Network(VGG -16)** to process images, a **Recurrent Neural Networks(Glove embeddings)** to process the question and a **Three Layer Feedforward Neural Network** to combine their results. The [VQA dataset](http://visualqa.org/) is then trained on this network. 
 
 Built on python using Keras Framework on Theano backend. Additional webpage designed to showcase the demo, built on flask framework. 
+[Click here to see the screencast video of the project](https://www.youtube.com/watch?v=e91YXohMRzE)
 
-[A much better and immaculate demo that inspired this one.](http://cloudcv.org/vqa)
+
+[A much better and an immaculate demo that inspired this one.](http://cloudcv.org/vqa)
 
 **[TODO]:**  
 
