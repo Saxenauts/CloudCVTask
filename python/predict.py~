@@ -50,7 +50,9 @@ def image_matrix(nlp, encoder, model, path):
     img_model.compile(optimizer=sgd, loss='categorical_crossentropy')
     img_matrix = img_model.predict(im)
     return img_matrix
-    ##Question
+
+
+##Below code heavily derived from Avi Singh's repo
 def predict(nlp, encoder, model, question, img_matrix):
     
         timesteps = len(nlp(question))

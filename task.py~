@@ -12,7 +12,7 @@ import predict as pdict
 <<<<<<< HEAD
 
 
-print ("Inititate")
+
 =======
 >>>>>>> 14c27f51c9b12931aeaa75ded00999f5e5370730
 
@@ -32,7 +32,7 @@ def initial():
 <<<<<<< HEAD
     
 =======
-    print ("Hola")
+    
 >>>>>>> 14c27f51c9b12931aeaa75ded00999f5e5370730
     global nlp
     global encoder

@@ -52,7 +52,7 @@ def image_matrix(nlp, encoder, model, path):
     return img_matrix
 
 
-##Below code heavily derived from Avi Singh's repo
+##Below code heavily derived from Abhishek's repo
 def predict(nlp, encoder, model, question, img_matrix):
     
         timesteps = len(nlp(question))
