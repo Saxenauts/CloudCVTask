@@ -6,11 +6,10 @@ Built on python using Keras Framework on Theano backend. Additional webpage desi
 [Click here to see the screencast video of the project](https://www.youtube.com/watch?v=e91YXohMRzE)
 
 
-[A much better and an immaculate demo that inspired this one.](http://cloudcv.org/vqa)
-
 **[TODO]:**  
 
-1. Blog post explaining the intricacies of the architecture.
-2. Add functionality to upload images and test them.
-3. Write a script to enable downloading the project and running it.
-4. Provide a laconic description of the project on github readme.md
+-[ ] Blog post explaining the intricacies of the architecture.
+-[ ] Add functionality to upload images and test them.
+-[ ] Write a script to enable downloading the project and running it.
+-[ ] Provide a laconic description of the project on github readme.md
+-[x] Comment the Code
