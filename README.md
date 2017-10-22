@@ -8,8 +8,8 @@ Built on python using Keras Framework on Theano backend. Additional webpage desi
 
 **[TODO]:**  
 
--[ ] Blog post explaining the intricacies of the architecture.
--[ ] Add functionality to upload images and test them.
--[ ] Write a script to enable downloading the project and running it.
--[ ] Provide a laconic description of the project on github readme.md
--[x] Comment the Code
+- [ ] Blog post explaining the intricacies of the architecture.
+- [ ] Add functionality to upload images and test them.
+- [ ] Write a script to enable downloading the project and running it.
+- [ ] Provide a laconic description of the project on github readme.md
+- [x] Comment the Code
